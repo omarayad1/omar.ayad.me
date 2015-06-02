@@ -30,7 +30,6 @@ def register_js_components(env):
                 "bootstrap/js/./dropdown.js",
                 "bootstrap/js/./carousel.js",
                 "bootstrap/js/modal.js",
-                "angularjs/angular.min.js",
                 assets.Bundle(
                         'setBackgroundColor.coffee',
                         filters=['coffeescript']
