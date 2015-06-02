@@ -3,6 +3,7 @@ from helpers import assets_pipeline
 import random
 import markdown
 import HTMLParser
+import os
 
 app = Flask(__name__)
 
@@ -141,4 +142,4 @@ def get_resume():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=int(os.environ['PORT']))
