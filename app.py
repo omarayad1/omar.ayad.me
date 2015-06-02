@@ -1,5 +1,7 @@
-from flask import Flask,render_template
+from flask import Flask, render_template
 from helpers import assets_pipeline
+import logging
+import sys
 import random
 import markdown
 import HTMLParser
