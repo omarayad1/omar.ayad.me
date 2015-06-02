@@ -1,0 +1,193 @@
+{
+	"name": "Omar H. Ayad",
+	"email": "omarayad1@gmail.com",
+	"phone": "+201003429035",
+	"education": [
+		{
+			"institution": "The American University in Cairo",
+			"graduation": "2016",
+			"level": "B.Sc.",
+			"degree": "Computer Science"
+		}
+	],
+	"work-experience": [
+		{
+			"company": "IBM",
+			"location": "Cairo, Egypt",
+			"website": "http://www.ibm.com/eg/en/",
+			"division": "Technology Development Center",
+			"position": "Software Engineering Intern",
+			"duration": "Jul 2014 - Aug 2014",
+			"description": [
+				"Trained Current Employees and Interns on How to use several IBMs Bluemix Cloud services",
+				"Designed a skeleton Mobile Application & API to work with Bluemix Cloud Services (Node.js . Sinatra - Ruby . Worklight)"
+			]
+		},
+		{
+			"company": "CivilSoft",
+			"location": "Alexandria, Egypt",
+			"website": "http://www.civilsoft.net",
+			"division": "Front-end Team",
+			"position": "Front-end Web Developer Intern",
+			"duration": "Nov 2013 - Feb 2014",
+			"description": [
+				"Created the frontend of a web application which guides the user to setup the structure of his website",
+				"Developed Javascript Plugins to be used in the development cycle"
+			]
+		}
+	],
+	"projects": [
+		{
+			"name": "Verilog Web IDE/Simulator",
+			"link": "http://ovide.ayad.me",
+			"github": [
+				"http://github.com/omarayad1/ovide-core",
+				"http://github.com/omarayad1/ovide-api",
+				"http://github.com/omarayad1/ovide-web"
+			],
+			"technologies": [
+				"Python 2.7",
+				"RabbitMQ",
+				"Node.js",
+				"Sails.js",
+				"Postgres",
+				"Backbone.js:"
+			],
+			"description": "Experimental Verilog Web Editor and simulator divided into three main modules; the core module written in python and communicates with the api module (written in Node.js) through a message queue server which communicates with the frontend module (constructed with backbone.js)"
+		},
+		{
+			"name": "Quine McCluskey Circuit Drawer",
+			"link": "http://mcclusky.ayad.me/",
+			"github": [
+				"http://github.com/omarayad1/The-McCluskenator"
+			],
+			"technologies": [
+				"Python 2.7",
+				"Flask",
+				"Coffeescript",
+				"Backbone.js",
+				"Joint.js"
+			],
+			"description": "Given the terms of the boolean function, minimizes the boolean function and draws the circuit."
+		},
+		{
+			"name": "Cache Simulator",
+			"github": [
+				"http://github.com/omarayad1/Yo-Cache"
+			],
+			"technologies": [
+				"Coffeescript",
+				"Ember.js",
+				"D3.js",
+				"NodeWebkit",
+				"Node.js"
+			],
+			"description": "Simulates User Defined Types of Caches and automatically presents live Graphs."
+		},
+		{
+			"name": "MIPS Disassembler/Simulator",
+			"github": [
+				"http://github.com/omarayad1/Yo-MIPS"
+			],
+			"technologies": [
+				"Python 2.74",
+				"Qt4.8",
+				"Pyside"
+			],
+			"description": " Disassembles Binary MIPS files and Simulates The Product."
+		},
+		{
+			"name": "Linux CLI OS",
+			"description": "Built and assembled a linux OS from source using existing open source packages (kernel, awk, glibc ... etc) without using existing Linux Distros."
+		},
+		{
+			"name": "Comic Hunter",
+			"github": [
+				"http://github.com/omarayad1/Comic-Hunter"
+			],
+			"technologies": [
+				"Python 2.7",
+				"BeautifulSoup",
+				"Requests"
+			],
+			"description": "Scrapes Popular web comic series like xkcd, cyanide & happiness and the oatmeal."
+		},
+		{
+			"name": "Big Data Analysis",
+			"technologies": [
+ 				"Hadoop",
+ 				"Mapreduce",
+ 				"Pig",
+ 				"Java",
+ 				"R",
+ 				"ggplot"
+			],
+			"description": "Using a Local installation of Hadoop and Pig analysed some properties of an approximately 375 GB of data and plotted it using R."
+		},
+		{
+			"name": "Digit Recognizer",
+			"technologies": ["R"],
+			"description": "Using existing training datasets and K-Nearest Neighbours Algorithm, trained a model to recognize a handwritten digit with an average precision of 0.94."
+		}
+	],
+	"extracurricular-activities": [
+		{
+			"organization": "Student Union",
+			"position": "Webmaster",
+			"duration": "Fall 2012 - Spring 2013",
+			"description": "Single Handedly Designed, Developed and Maintained The Student Unions Website"
+		},
+		{
+			"organization": "Computer Science and Engineering Association",
+			"position": "Webmaster",
+			"duration": "Fall 2012 - Spring 2013",
+			"description": "In a team of 3 people we designed, developed and maintained the CSEA website"
+		}
+	],
+	"languages": [
+		"Python",
+		"Javascript",
+		"Coffeescript",
+		"CSS",
+		"HTML",
+		"C++",
+		"MIPS Assembly",
+		"R",
+		"Ruby",
+		"SQL",
+		"Erlang",
+		"Java",
+		"LATEX"
+	],
+	"technologies": [
+		"Unix",
+		"Node.js",
+		"JQuery",
+		"Git",
+		"Ember.js",
+		"Backbone.js",
+		"Sails.js",
+		"Express.js",
+		"Heroku",
+		"Bluemix",
+		"Grunt",
+		"Qt",
+		"Hadoop",
+		"MapReduce",
+		"Pig",
+		"D3.js",
+		"MongoDB",
+		"CouchDB",
+		"SQLDB2",
+		"Cloudant",
+		"Rails"
+	],
+	"links": {
+		"github": "http://www.github.com/omarayad1",
+		"facebook": "http://www.facebook.com/omarayad93",
+		"quora": "http://www.quora.com/Omar-Ayad",
+		"Google+": "http://plus.google.com/+OmarAyad1",
+		"Linkedin": "http://eg.linkedin.com/in/omarayad1",
+		"Flickr": "http://www.flickr.com/omarayad1/sets"
+	}
+}

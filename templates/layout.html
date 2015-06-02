@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Omar Ayad</title>
+        {% assets "css_all" %}
+            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"></script>
+            <link href='http://fonts.googleapis.com/css?family=Raleway:500,800,900' rel='stylesheet' type='text/css'>
+        {% endassets %}
+    <head>
+    <body>
+        {% include "nav.html" %}
+        {% block content %}
+        {% endblock content %}
+        {% assets "js_all" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+    </body>
+</html>

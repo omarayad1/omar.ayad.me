@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+<h3>Here is my resume in 4 different formats, please hire me!!<h3>
+<div class="bigass-panel col-md-10">
+		<div class="col-md-4 col-md-offset-3">
+			<h1><a href="/static/resume.pdf">PDF</a></h1>
+		</div>
+		<div class="col-md-4 col-md-offset-1">
+			<h1><a href="/static/resume.tex">TeX</a></h1>
+		</div>
+</div>
+<div class="bigass-panel col-md-10">
+		<div class="col-md-4 col-md-offset-3">
+			<h1><a href="/static/resume.html">HTML</a></h1>
+		</div>
+		<div class="col-md-4 col-md-offset-1">
+			<h1><a href="/static/resume.json">JSON</a></h1>
+		</div>
+</div>
+{% endblock content %}

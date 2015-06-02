@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="bigass-panel col-md-11">
+		<div class="col-md-2">
+			<h1><a href="/projects/{{ data.id }}">{{ data.title }}</a></h1>
+			{% if data.github %}
+				<h3><a href="{{ data.github }}">GitHub Link</a></h3>
+			{% endif %}
+		</div>
+		<div class="col-md-2"></div>
+		<div class="col-md-4"><h3>{{ data.description }}</h3></div>
+	</div>
+	<div id="markdown" class="well well-lg col-md-8 col-md-offset-2">
+	</div>
+	<script>
+	document.getElementById("markdown").innerHTML = unescape('{{ data.full_description|safe }}')</script>
+
+{% endblock content %}
