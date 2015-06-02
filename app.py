@@ -121,7 +121,7 @@ print "begin app"
 @app.route("/")
 def index():
 	print "root"
-    return render_template('index.html')
+	return render_template('index.html')
 
 
 @app.route("/bgcolor")
