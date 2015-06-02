@@ -6,7 +6,8 @@ import HTMLParser
 import os
 
 app = Flask(__name__)
-
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 env = assets_pipeline.load_paths(app)
 env = assets_pipeline.register_js_components(env)
 env = assets_pipeline.register_css_components(env)
