@@ -19,7 +19,6 @@ global lorem
 global projects
 global lorem_markdown
 
-print "variables"
 
 lorem = """
 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -93,7 +92,6 @@ idem! Nec passu, euntes, Nam longe ubi Iovis corporis mox succumbere
 
 """
 
-print "Data"
 
 lorem_markdown = h.unescape(markdown.markdown(lorem_markdown).replace('\n',''))
 
@@ -119,11 +117,9 @@ projects = [
 for item in data:
 	item["text"] = lorem
 
-print "begin app"
 
 @app.route("/")
 def index():
-	print "root"
 	return render_template('index.html')
 
 
