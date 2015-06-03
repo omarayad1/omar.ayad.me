@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 from flask.ext.mongoengine import MongoEngine
 from helpers import assets_pipeline, markdown_converter, random_color_gen
-from models import about
+from models import about, projects
 import logging
 import sys
 import os
@@ -116,7 +116,7 @@ data = [
 	{"title": "Contact"}
 ]
 
-projects = [
+_projects = [
 	{"id": 1, "title": "Ovide", "description": lorem, "full_description": lorem_markdown},
 	{"id": 2, "title": "The McCluskenator", "description": lorem, "full_description": lorem_markdown},
 	{"id": 3, "title": "Comic Hunter", "description": lorem, "full_description": lorem_markdown},
@@ -144,11 +144,13 @@ def about_me():
 
 @app.route("/projects", methods=['GET'])
 def projects_all():
-	return render_template('projects.html', data=projects)
+	data_projects = projects.Projects.objects
+	print data_projects
+	return render_template('projects.html', data=data_projects)
 
-@app.route("/projects/<int:id>", methods=['GET'])
+@app.route("/projects/<id>", methods=['GET'])
 def projects_item(id):
-	return render_template('project.html', data=projects[id])
+	return render_template('project.html', item=projects.Projects.objects.get(id=id))
 
 
 @app.route("/resume", methods=['GET'])

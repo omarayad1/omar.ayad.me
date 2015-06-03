@@ -4,9 +4,11 @@
 {% for item in data %}
 	<div class="bigass-panel col-md-10">
 		<div class="col-md-2">
-			<h1><a href="/projects/{{ item.id }}">{{ item.title }}</a></h1>
+			<h1><a href="/projects/{{ item.id }}">{{ item.name }}</a></h1>
 			{% if item.github %}
-				<h3><a href="{{ item.github }}">GitHub Link</a></h3>
+				{% for link in item.github %}
+					<h3><a href="{{ link }}" style="color:#fff">GitHub Link</a></h3>
+				{% endfor %}
 			{% endif %}
 		</div>
 		<div class="col-md-2"></div>
