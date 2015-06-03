@@ -145,7 +145,6 @@ def about_me():
 @app.route("/projects", methods=['GET'])
 def projects_all():
 	data_projects = projects.Projects.objects
-	print data_projects
 	return render_template('projects.html', data=data_projects)
 
 @app.route("/projects/<id>", methods=['GET'])
