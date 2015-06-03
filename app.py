@@ -14,6 +14,7 @@ env = assets_pipeline.load_paths(app)
 env = assets_pipeline.register_js_components(env)
 env = assets_pipeline.register_css_components(env)
 h = HTMLParser.HTMLParser()
+
 global data
 global lorem
 global projects
