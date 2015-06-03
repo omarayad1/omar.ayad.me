@@ -1,19 +1,31 @@
 from flask import Flask, render_template
-from helpers import assets_pipeline
+from flask.ext.mongoengine import MongoEngine
+from helpers import assets_pipeline, markdown_converter, random_color_gen
+from models import about
 import logging
 import sys
-import random
-import markdown
-import HTMLParser
 import os
 
+db = MongoEngine()
+
 app = Flask(__name__)
+
+
+# Setting logging settings to dev
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
+
+# Configuring DB
+
+app.config['MONGODB_SETTINGS'] = {
+	'host': os.environ['MONGOLAB_URI']
+}
+
+db.init_app(app)
+# building and compressing assets
 env = assets_pipeline.load_paths(app)
 env = assets_pipeline.register_js_components(env)
 env = assets_pipeline.register_css_components(env)
-h = HTMLParser.HTMLParser()
 
 global data
 global lorem
@@ -93,8 +105,7 @@ idem! Nec passu, euntes, Nam longe ubi Iovis corporis mox succumbere
 
 """
 
-
-lorem_markdown = h.unescape(markdown.markdown(lorem_markdown).replace('\n',''))
+lorem_markdown = markdown_converter.convert(lorem_markdown)
 
 data = [
 	{"title": "Overview"},
@@ -115,38 +126,38 @@ projects = [
 	{"id": 7, "title": "Custom Linux Distro", "description": lorem, "full_description": lorem_markdown}
 	]
 
-for item in data:
-	item["text"] = lorem
-
-
-@app.route("/")
+@app.route("/", methods=['GET'])
 def index():
 	return render_template('index.html')
 
 
-@app.route("/bgcolor")
+@app.route("/bgcolor", methods=['GET'])
 def get_background_color():
-	r = lambda: random.randint(0,255)
-	return '#%02X%02X%02X' % (r(),r(),r())
+	return random_color_gen.gen()
 
-@app.route("/about")
+
+@app.route("/about", methods=['GET'])
 def about_me():
-	return render_template('about.html', data=data)
+	data_about = about.About.objects
+	return render_template('about.html', data=data_about)
 
 
-@app.route("/projects")
+@app.route("/projects", methods=['GET'])
 def projects_all():
 	return render_template('projects.html', data=projects)
 
-@app.route("/projects/<id>")
+@app.route("/projects/<int:id>", methods=['GET'])
 def projects_item(id):
-	return render_template('project.html', data=projects[int(id)])
+	return render_template('project.html', data=projects[id])
 
 
-@app.route("/resume")
+@app.route("/resume", methods=['GET'])
 def get_resume():
 	return render_template('resume.html')
 
+@app.route("/contact", methods=['GET'])
+def get_contact_me():
+	return render_template('contact.html')
 
 if __name__ == "__main__":
-    app.run(debug=True,port=int(os.environ['PORT']))
+    app.run(debug=True,port=int(os.environ.get('PORT', 5000)))
