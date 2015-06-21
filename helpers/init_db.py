@@ -173,7 +173,6 @@ for item in projects_data:
 	if 'md' in item:
 		md_doc = open('static/md/'+item['md'], 'rb')
 		data = md_doc.read()
-		data.replace('/n','//n')
 		md = markdown_file.MarkdownFile(data)
 		md.save()
 	data_item = projects.Projects(
