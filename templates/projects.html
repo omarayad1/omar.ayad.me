@@ -8,8 +8,13 @@
 			{% if item.github %}
 				<h3>
 				{% for link in item.github %}
-					<a href="{{ link }}" style="color:#fff">GitHub Link &nbsp;</a>
+					<a href="{{ link.link }}" style="color:#fff">GitHub Link &nbsp;</a>
 				{% endfor %}
+				</h3>
+			{% endif %}
+			{% if item.link %}
+				<h3>
+					running on <a href="{{ item.link }}">link</a>
 				</h3>
 			{% endif %}
 		</div>

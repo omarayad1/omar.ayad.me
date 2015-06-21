@@ -71,7 +71,7 @@ projects_data = [
 				"Backbone.js:"
 			],
 			"description": "Experimental Verilog Web Editor and simulator divided into three main modules; the core module written in python and communicates with the api module (written in Node.js) through a message queue server which communicates with the frontend module (constructed with backbone.js)",
-			"md": "mcclusky.md"
+			"md": ["ovide-api.md","ovide-web.md","ovide-core.md"]
 		},
 		{
 			"name": "Quine McCluskey Circuit Drawer",
@@ -86,7 +86,8 @@ projects_data = [
 				"Backbone.js",
 				"Joint.js"
 			],
-			"description": "Given the terms of the boolean function, minimizes the boolean function and draws the circuit."
+			"description": "Given the terms of the boolean function, minimizes the boolean function and draws the circuit.",
+			"md": ["mcclusky.md"]
 		},
 		{
 			"name": "Cache Simulator",
@@ -161,6 +162,7 @@ for item in projects_data:
 	github_items = []
 	technologies_items = []
 	md = None
+	md_data =[]
 	link_item = None
 	if 'link' in item:
 		link_item = links.Links(link=item['link']).save()
@@ -171,17 +173,19 @@ for item in projects_data:
 		for technology in item['technologies']:
 			technologies_items.append(technologies.Technologies(technology=technology).save())
 	if 'md' in item:
-		md_doc = open('static/md/'+item['md'], 'rb')
-		data = md_doc.read()
-		md = markdown_file.MarkdownFile(data)
-		md.save()
+		for el in item['md']:
+			md_doc = open('static/md/'+el, 'rb')
+			data = md_doc.read()
+			md = markdown_file.MarkdownFile(data)
+			md.save()
+			md_data.append(md)
 	data_item = projects.Projects(
 		name=item['name'],
 		description=item['description'],
 		link = link_item,
 		github = None if github_items == [] else github_items,
 		technologies = None if technologies_items == [] else technologies_items,
-		markdown = [md]
+		markdown = md_data
 	)
 	data_item.save()
 print "Saved Data"
