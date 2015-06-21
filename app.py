@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 # Setting logging settings to dev
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
-app.logger.setLevel(logging.ERROR)
+app.logger.setLevel(logging.INFO)
 
 # Configuring DB
 
@@ -149,7 +149,10 @@ def projects_all():
 
 @app.route("/projects/<id>", methods=['GET'])
 def projects_item(id):
-	return render_template('project.html', item=projects.Projects.objects.get(id=id))
+	data = projects.Projects.objects(pk=id).first()
+	md = data.markdown[0].markdown
+	html = markdown_converter.convert(md)
+	return render_template('project.html', item=data, markdown=[html])
 
 
 @app.route("/resume", methods=['GET'])

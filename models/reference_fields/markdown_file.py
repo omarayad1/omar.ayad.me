@@ -4,5 +4,4 @@ from flask.ext.mongoengine import MongoEngine
 db = MongoEngine()
 
 class MarkdownFile(db.Document):
-	markdown = db.FileField()
-	html = db.FileField()
+	markdown = db.StringField()

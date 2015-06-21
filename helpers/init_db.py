@@ -70,7 +70,8 @@ projects_data = [
 				"Postgres",
 				"Backbone.js:"
 			],
-			"description": "Experimental Verilog Web Editor and simulator divided into three main modules; the core module written in python and communicates with the api module (written in Node.js) through a message queue server which communicates with the frontend module (constructed with backbone.js)"
+			"description": "Experimental Verilog Web Editor and simulator divided into three main modules; the core module written in python and communicates with the api module (written in Node.js) through a message queue server which communicates with the frontend module (constructed with backbone.js)",
+			"md": "mcclusky.md"
 		},
 		{
 			"name": "Quine McCluskey Circuit Drawer",
@@ -159,6 +160,7 @@ for item in about_data:
 for item in projects_data:
 	github_items = []
 	technologies_items = []
+	md = None
 	link_item = None
 	if 'link' in item:
 		link_item = links.Links(link=item['link']).save()
@@ -168,12 +170,19 @@ for item in projects_data:
 	if 'technologies' in item:
 		for technology in item['technologies']:
 			technologies_items.append(technologies.Technologies(technology=technology).save())
+	if 'md' in item:
+		md_doc = open('static/md/'+item['md'], 'rb')
+		data = md_doc.read()
+		data.replace('/n','//n')
+		md = markdown_file.MarkdownFile(data)
+		md.save()
 	data_item = projects.Projects(
 		name=item['name'],
 		description=item['description'],
 		link = link_item,
 		github = None if github_items == [] else github_items,
-		technologies = None if technologies_items == [] else technologies_items
+		technologies = None if technologies_items == [] else technologies_items,
+		markdown = [md]
 	)
 	data_item.save()
 print "Saved Data"

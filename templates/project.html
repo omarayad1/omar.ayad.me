@@ -7,7 +7,7 @@
 			{% if item.github %}
 			<h3>
 				{% for link in item.github %}
-					<a href="{{ link }}" style="color:#fff">GitHub Link &nbsp;</a>
+					<a href="{{ link.link }}" style="color:#fff">GitHub Link &nbsp;</a>
 				{% endfor %}
 				</h3>
 			{% endif %}
@@ -15,11 +15,8 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-4"><h3>{{ item.description }}</h3></div>
 	</div>
-	{% if item.markdown %}
 	<div id="markdown" class="well well-lg col-md-8 col-md-offset-2">
+		{{ markdown[0]|safe }}
 	</div>
-	{% endif %}
-	<script>
-	document.getElementById("markdown").innerHTML = '{{ item.full_description|safe }}'</script>
 
 {% endblock content %}
