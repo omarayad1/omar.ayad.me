@@ -66,5 +66,9 @@ def get_resume():
 def get_contact_me():
 	return render_template('contact.html')
 
+@app.route("/sitemap.xml", methods=['GET'])
+def get_sitemap():
+	return render_template('sitemap.xml')
+
 if __name__ == "__main__":
     app.run(debug=True,port=int(os.environ.get('PORT', 5000)))
