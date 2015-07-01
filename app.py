@@ -1,7 +1,13 @@
 from flask import Flask, render_template
+from controllers import home_controller
+from controllers import background_controller
+from controllers import about_controller
+from controllers import projects_controller
+from controllers import resume_controller
+from controllers import contact_me_controller
+from controllers import sitemap_controller
 from flask.ext.mongoengine import MongoEngine
-from helpers import assets_pipeline, markdown_converter, random_color_gen
-from models import about, projects
+from helpers import assets_pipeline
 import logging
 import sys
 import os
@@ -11,7 +17,7 @@ db = MongoEngine()
 app = Flask(__name__)
 
 
-# Setting logging settings to dev
+# Adjusting logging settings to dev
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.INFO)
 
@@ -27,48 +33,32 @@ env = assets_pipeline.load_paths(app)
 env = assets_pipeline.register_js_components(env)
 env = assets_pipeline.register_css_components(env)
 
-@app.route("/", methods=['GET'])
-def index():
-	return render_template('index.html')
+# routes
 
+app.add_url_rule('/', view_func=home_controller.HomeController.as_view('home'))
+app.add_url_rule('/bgcolor', view_func=background_controller.BackgroundController.as_view('bg'))
+app.add_url_rule('/about', view_func=about_controller.AboutController.as_view('about'))
 
-@app.route("/bgcolor", methods=['GET'])
-def get_background_color():
-	return random_color_gen.gen()
+projects_view = projects_controller.ProjectsController.as_view('projects')
 
+app.add_url_rule('/projects/',
+	defaults={'id': None},
+	view_func=projects_view,
+	methods=['GET',])
 
-@app.route("/about", methods=['GET'])
-def about_me():
-	data_about = about.About.objects
-	return render_template('about.html', data=data_about)
+app.add_url_rule('/projects/<id>',
+	view_func=projects_view,
+	methods=['GET',])
 
+app.add_url_rule('/resume', view_func=resume_controller.ResumeController.as_view('resume'))
+app.add_url_rule('/contact', view_func=contact_me_controller.ContactMeController.as_view('contact'))
+app.add_url_rule('/sitemap.xml', view_func=sitemap_controller.SitemapController.as_view('sitemap'))
 
-@app.route("/projects", methods=['GET'])
-def projects_all():
-	data_projects = projects.Projects.objects
-	return render_template('projects.html', data=data_projects)
+# error Handling
 
-@app.route("/projects/<id>", methods=['GET'])
-def projects_item(id):
-	data = projects.Projects.objects(pk=id).first()
-	md = []
-	for el in data.markdown:
-		html = markdown_converter.convert(el.markdown)
-		md.append(html)
-	return render_template('project.html', item=data, markdown=md)
-
-
-@app.route("/resume", methods=['GET'])
-def get_resume():
-	return render_template('resume.html')
-
-@app.route("/contact", methods=['GET'])
-def get_contact_me():
-	return render_template('contact.html')
-
-@app.route("/sitemap.xml", methods=['GET'])
-def get_sitemap():
-	return render_template('sitemap.xml')
+@app.errorhandler(404)
+def page_not_found(e):
+	return render_template('error/404.html'), 404
 
 if __name__ == "__main__":
     app.run(debug=True,port=int(os.environ.get('PORT', 5000)))
